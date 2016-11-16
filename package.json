@@ -1,0 +1,42 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "css:build": "find ./css -type f -exec cat {} + | cleancss -o ./dist/css/style.min.css",
+    "js:build": "watchify ./js/index.js -o  ./dist/js/script.min.js --verbose",
+    "watch:css": "chokidar \"./css/*\" -c \"npm run css:build\" --verbose",
+    "watch": "npm run js:build & npm run watch:css",
+    "dev:start": "http-server"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "syntax-object-rest-spread"
+    ]
+  },
+  "browserify": {
+    "transform": [
+      "babelify",
+      "uglifyify"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.1",
+    "chokidar-cli": "^1.2.0",
+    "clean-css": "^3.4.20",
+    "live-server": "^1.1.0",
+    "uglifyify": "^3.0.4",
+    "watchify": "^3.7.0",
+    "whatwg-fetch": "^2.0.0"
+  }
+}
