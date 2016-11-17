@@ -10,14 +10,16 @@ const matches = document.getElementById('matches')
 
 const selectedOption 	= (e) => {
 	const id = e.target.getAttribute('artist')
+
 	extract(id)
 		.then(collabs => console.log(collabs))
-
+	matches.innerHTML = ''
 }
 
 const fetchArtists = () => {
 	
 	if(input.value == '') return
+		
 	try {
 		fetch(queryAPI(input.value))
 			.then(res 	=> res.json())
@@ -27,7 +29,7 @@ const fetchArtists = () => {
 				[0, 1, 2 ,3 , 4].forEach(i => document.getElementById(`option-${i}`).addEventListener('click', selectedOption))
 				input.value = ''
 			})
-			// .catch(err 	=> fetchArtists())	
+			.catch(err 	=> fetchArtists())	
 	} catch(e) {}
 }
 
