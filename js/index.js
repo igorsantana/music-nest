@@ -17,9 +17,10 @@ const selectedOption 	= (e) => {
 }
 
 const fetchArtists = () => {
+	document.getElementById('search-box').className = ""
+	return
+	// if(input.value == '') return
 	
-	if(input.value == '') return
-		
 	try {
 		fetch(queryAPI(input.value))
 			.then(res 	=> res.json())
